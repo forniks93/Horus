@@ -3,32 +3,43 @@ package org.example;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Block redBlock = new BasicBlock("Red","Wełna");
-        Block whiteBlock = new BasicBlock("White","Wełna");
-        Block whiteBlock2 = new BasicBlock("White","Plastik");
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("Enter the color: ");
+        String color = input.next().toLowerCase();
+
+        System.out.println("Enter the material: ");
+        String material = input.next().toLowerCase();
+
+        Block redBlock = Block.createBlock("red", "wool");
+        Block whiteBlock = Block.createBlock("white", "wool");
+        Block whiteBlock2 = Block.createBlock("white", "plastic");
+        Block orangeBlock = Block.createBlock("orange", "wool");
 
         List<Block> block = new ArrayList<>();
         block.add(redBlock);
         block.add(whiteBlock);
         block.add(whiteBlock2);
+        block.add(orangeBlock);
         Wall wall = new Wall(block);
 
-        Optional<Block> foundColor = wall.findBlockByColor("White");
+        Optional<Block> foundColor = wall.findBlockByColor(color);
         if(foundColor.isPresent()){
-            System.out.println("Blok o kolorze White odnaleziono");
+            System.out.println("Color block "+color+" found");
         }else{
-            System.out.println("Nie odnalezion bloku o kolerze White!");
+            System.out.println("Color block not found "+color+"!");
         }
 
-        List<Block> foundMaterial = wall.findBlocksByMaterial("Wełna");
-        System.out.println("Odnaleziono bloki z materiału Wełna: " + foundMaterial.size());
+        List<Block> foundMaterial = wall.findBlocksByMaterial(material);
+        System.out.println("Blocks with material found "+material+": " + foundMaterial.size());
 
         int totalCount = wall.count();
-        System.out.println("Liczba wszystkich bloków: " + totalCount);
+        System.out.println("Number of all blocks: " + totalCount);
 
     }
 }
