@@ -11,10 +11,11 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         System.out.println("Enter the color: ");
-        String color = input.next().toLowerCase();
+        String color = input.nextLine().toLowerCase();
 
         System.out.println("Enter the material: ");
-        String material = input.next().toLowerCase();
+        String material = input.nextLine().toLowerCase();
+
 
         Block redBlock = Block.createBlock("red", "wool");
         Block whiteBlock = Block.createBlock("white", "wool");
